@@ -1,0 +1,88 @@
+name: Verify and deploy FluxLab
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify numerical solver, models, serialization and worker
+        run: npm test
+      - name: Build standalone application and static site
+        run: npm run build
+      - name: Record deployment revision
+        run: |
+          node --input-type=module <<'NODE'
+          import { writeFileSync } from 'node:fs';
+          writeFileSync('dist/deployment.json', JSON.stringify({
+            application: 'FluxLab',
+            commit: process.env.GITHUB_SHA,
+            repository: process.env.GITHUB_REPOSITORY,
+            run: process.env.GITHUB_RUN_ID
+          }, null, 2) + '\n');
+          NODE
+      - name: Upload GitHub Pages site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Publish GitHub Pages
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy site
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify published revision and application resources
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+          EXPECTED_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="${SITE_URL%/}/"
+          curl --fail --silent --show-error --retry 8 --retry-delay 5 --retry-all-errors \
+            "${base}deployment.json?revision=${EXPECTED_SHA}" -o "$RUNNER_TEMP/deployment.json"
+          node -e 'const fs = require("node:fs"); const m = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + "/deployment.json", "utf8")); if (m.commit !== process.env.EXPECTED_SHA) throw new Error("Published revision mismatch: " + m.commit); console.log(m);'
+          for path in index.html style.css favicon.svg src/app.js src/cpu.js src/gpu.js src/worker.js src/solver.wgsl src/render.wgsl docs/NUMERICS.md examples/airfoil.fluxlab.json fluxlab-standalone.html
+          do
+            curl --fail --silent --show-error --retry 4 --retry-delay 3 --retry-all-errors \
+              "${base}${path}" -o /dev/null
+            echo "Verified ${path}"
+          done
+          echo "### FluxLab published" >> "$GITHUB_STEP_SUMMARY"
+          echo "Application: ${SITE_URL}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Revision: ${EXPECTED_SHA}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Numerical tests, static build, deployment revision and 12 public resources verified." >> "$GITHUB_STEP_SUMMARY"
