@@ -1,0 +1,134 @@
+{
+  "format": "fluxlab-case",
+  "version": 1,
+  "name": "Cylinder array",
+  "domain": {
+    "length": 0.12,
+    "height": 0.054,
+    "nx": 384
+  },
+  "fluid": {
+    "name": "Water · 20 °C",
+    "density": 998.2,
+    "viscosity": 0.001002
+  },
+  "flow": {
+    "speed": 0.004,
+    "latticeSpeed": 0.055,
+    "mode": "tunnel",
+    "walls": "noslip",
+    "profile": "uniform"
+  },
+  "solver": {
+    "collision": "trt",
+    "batch": 12,
+    "target": 20000,
+    "tolerance": 0.00001,
+    "autoStop": false
+  },
+  "bodies": [
+    {
+      "id": "b14500c2-a624-4f5e-9a75-135896a718ab",
+      "type": "circle",
+      "name": "cylinder-1",
+      "x": 0.035,
+      "y": 0.013,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    },
+    {
+      "id": "164c9984-64ce-4c63-8669-74d581cbfc68",
+      "type": "circle",
+      "name": "cylinder-2",
+      "x": 0.035,
+      "y": 0.027,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    },
+    {
+      "id": "83e1e3a5-bd2d-4148-acd8-21d0d07e7617",
+      "type": "circle",
+      "name": "cylinder-3",
+      "x": 0.035,
+      "y": 0.041,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    },
+    {
+      "id": "b23ba1e0-3cc7-4a55-9557-79e7b2b8a5e4",
+      "type": "circle",
+      "name": "cylinder-4",
+      "x": 0.053000000000000005,
+      "y": 0.013,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    },
+    {
+      "id": "8db87409-c91d-4709-bfef-e3a85b0f2980",
+      "type": "circle",
+      "name": "cylinder-5",
+      "x": 0.053000000000000005,
+      "y": 0.027,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    },
+    {
+      "id": "d7e3aa27-6060-46bc-b0d2-3933a917eb64",
+      "type": "circle",
+      "name": "cylinder-6",
+      "x": 0.053000000000000005,
+      "y": 0.041,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    },
+    {
+      "id": "cc5c6133-b420-42c7-8142-f405d3d77e08",
+      "type": "circle",
+      "name": "cylinder-7",
+      "x": 0.07100000000000001,
+      "y": 0.013,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    },
+    {
+      "id": "e8e80f76-30df-46db-8717-f3c242f20ef9",
+      "type": "circle",
+      "name": "cylinder-8",
+      "x": 0.07100000000000001,
+      "y": 0.027,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    },
+    {
+      "id": "ce4a39f3-0715-4642-be1a-f5cf813c0123",
+      "type": "circle",
+      "name": "cylinder-9",
+      "x": 0.07100000000000001,
+      "y": 0.041,
+      "width": 0.006,
+      "height": 0.006,
+      "angle": 0
+    }
+  ],
+  "display": {
+    "field": "speed",
+    "palette": "spectrum",
+    "streamlines": true,
+    "vectors": false,
+    "mesh": false,
+    "particles": true,
+    "contours": false,
+    "autoRange": true,
+    "rangeMin": 0,
+    "rangeMax": 0.01
+  },
+  "probes": []
+}

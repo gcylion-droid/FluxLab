@@ -1,0 +1,43 @@
+{
+  "format": "fluxlab-case",
+  "version": 1,
+  "name": "Laminar channel",
+  "domain": {
+    "length": 0.12,
+    "height": 0.054,
+    "nx": 384
+  },
+  "fluid": {
+    "name": "Water · 20 °C",
+    "density": 998.2,
+    "viscosity": 0.001002
+  },
+  "flow": {
+    "speed": 0.002,
+    "latticeSpeed": 0.055,
+    "mode": "tunnel",
+    "walls": "noslip",
+    "profile": "parabolic"
+  },
+  "solver": {
+    "collision": "trt",
+    "batch": 12,
+    "target": 20000,
+    "tolerance": 0.00001,
+    "autoStop": false
+  },
+  "bodies": [],
+  "display": {
+    "field": "speed",
+    "palette": "spectrum",
+    "streamlines": true,
+    "vectors": false,
+    "mesh": false,
+    "particles": true,
+    "contours": false,
+    "autoRange": true,
+    "rangeMin": 0,
+    "rangeMax": 0.01
+  },
+  "probes": []
+}

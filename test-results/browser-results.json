@@ -1,0 +1,149 @@
+{
+  "mode": "in-memory",
+  "checks": [
+    {
+      "check": "Application initializes a real numerical backend",
+      "status": "passed",
+      "details": "CPU \u00b7 Cooperative"
+    },
+    {
+      "check": "Airfoil solver advances and remains finite",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Mesh overlay toggles",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Scalar field and scientific legend update",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Body inspector commits and reinitializes",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Undo and redo preserve case transactions",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Create, select, and delete a solid body",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Pointer-driven cylinder creation",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Probe placement and measured data table",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Reinitialization while probe views are open",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Case, CSV, VTK, monitor, probe, report and PNG export generation",
+      "status": "passed",
+      "details": [
+        {
+          "name": "airfoil-water-tunnel.fluxlab.json",
+          "size": 1430,
+          "type": "application/json",
+          "head": "{\n  \"format\": \"fluxlab-case\",\n  \"version\": 1,\n  \"name\": \"Airfoil water tunnel\",\n  \"domain\": {\n    \"length\": 0.12,\n    \"height\": 0."
+        },
+        {
+          "name": "airfoil-water-tunnel.csv",
+          "size": 1453827,
+          "type": "text/csv",
+          "head": "x_m,y_m,velocity_x_m_s,velocity_y_m_s,speed_m_s,gauge_pressure_Pa,lattice_density,solid\n0,0,0,0,0,0,1,1\n0.0006282722513089005,0,0,"
+        },
+        {
+          "name": "airfoil-water-tunnel.vtk",
+          "size": 456626,
+          "type": "application/octet-stream",
+          "head": "# vtk DataFile Version 3.0\nFluxLab D2Q9 field (SI units)\nASCII\nDATASET STRUCTURED_POINTS\nDIMENSIONS 192 87 1\nORIGIN 0 0 0\nSPACING "
+        },
+        {
+          "name": "airfoil-water-tunnel-monitors.csv",
+          "size": 145,
+          "type": "text/csv",
+          "head": "iteration,time_s,temporal_density_change,temporal_u_change,temporal_v_change,maximum_mach,mean_lattice_density,inlet_outlet_flux_m"
+        },
+        {
+          "name": "airfoil-water-tunnel-probes.csv",
+          "size": 190,
+          "type": "text/csv",
+          "head": "probe,iteration,time_s,x_m,y_m,velocity_x_m_s,velocity_y_m_s,speed_m_s,gauge_pressure_Pa,solid\n\"P1\",0,0,0.09000000420237753,0.0399"
+        },
+        {
+          "name": "airfoil-water-tunnel-report.json",
+          "size": 3166,
+          "type": "application/json",
+          "head": "{\n  \"name\": \"Airfoil water tunnel\",\n  \"created\": \"2026-09-06T07:54:55.887Z\",\n  \"case\": {\n    \"format\": \"fluxlab-case\",\n    \"versio"
+        },
+        {
+          "name": "airfoil-water-tunnel.png",
+          "size": 72688,
+          "type": "image/png",
+          "head": "PNG"
+        }
+      ]
+    },
+    {
+      "check": "Case JSON file round trip",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Sanitized SVG primitive geometry import",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "All seven workflow ribbons and task-page routes",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "All six example configurations initialize and advance",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Example library dialog",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Keyboard run / pause and asynchronous stepping",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "Browser WebGPU execution and GPU/CPU parity",
+      "status": "not-executed",
+      "details": "No WebGPU adapter is exposed in this managed browser context. GPU source remains unverified on a device in this run."
+    },
+    {
+      "check": "Desktop, tablet and mobile layouts, light and dark themes",
+      "status": "passed",
+      "details": null
+    },
+    {
+      "check": "No uncaught JavaScript errors",
+      "status": "passed",
+      "details": null
+    }
+  ],
+  "uncaughtErrors": []
+}

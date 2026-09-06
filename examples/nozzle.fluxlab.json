@@ -1,0 +1,124 @@
+{
+  "format": "fluxlab-case",
+  "version": 1,
+  "name": "Converging passage",
+  "domain": {
+    "length": 0.12,
+    "height": 0.054,
+    "nx": 384
+  },
+  "fluid": {
+    "name": "Water · 20 °C",
+    "density": 998.2,
+    "viscosity": 0.001002
+  },
+  "flow": {
+    "speed": 0.003,
+    "latticeSpeed": 0.055,
+    "mode": "tunnel",
+    "walls": "noslip",
+    "profile": "uniform"
+  },
+  "solver": {
+    "collision": "trt",
+    "batch": 12,
+    "target": 20000,
+    "tolerance": 0.00001,
+    "autoStop": false
+  },
+  "bodies": [
+    {
+      "id": "130b52e7-dad7-4c53-bbfa-6a5badfea24e",
+      "type": "polygon",
+      "name": "lower-wall",
+      "x": 0.06,
+      "y": 0,
+      "width": 0.12,
+      "height": 0.018,
+      "angle": 0,
+      "points": [
+        [
+          -0.06,
+          0
+        ],
+        [
+          0.06,
+          0
+        ],
+        [
+          0.06,
+          0.004
+        ],
+        [
+          0.016,
+          0.019
+        ],
+        [
+          -0.006,
+          0.019
+        ],
+        [
+          -0.035,
+          0.004
+        ],
+        [
+          -0.06,
+          0.004
+        ]
+      ]
+    },
+    {
+      "id": "e0a84fa9-3294-4360-b591-16edec835c6f",
+      "type": "polygon",
+      "name": "upper-wall",
+      "x": 0.06,
+      "y": 0.054,
+      "width": 0.12,
+      "height": 0.018,
+      "angle": 0,
+      "points": [
+        [
+          -0.06,
+          0
+        ],
+        [
+          0.06,
+          0
+        ],
+        [
+          0.06,
+          -0.004
+        ],
+        [
+          0.016,
+          -0.019
+        ],
+        [
+          -0.006,
+          -0.019
+        ],
+        [
+          -0.035,
+          -0.004
+        ],
+        [
+          -0.06,
+          -0.004
+        ]
+      ]
+    }
+  ],
+  "display": {
+    "field": "speed",
+    "palette": "spectrum",
+    "streamlines": true,
+    "vectors": false,
+    "mesh": false,
+    "particles": true,
+    "contours": false,
+    "autoRange": true,
+    "rangeMin": 0,
+    "rangeMax": 0.01
+  },
+  "probes": []
+}

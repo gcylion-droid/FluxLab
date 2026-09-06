@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f5f3"><meta name="description" content="FluxLab — an interactive, local-first computational fluid dynamics workbench. Real WebGPU flow simulation, editable geometry, and scientific visualization.">
+<title>FluxLab — Fluid dynamics workbench</title>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg"><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="titlebar">
+  <a class="brand" href="./" aria-label="FluxLab home"><span class="brand-mark">∿</span><span>fluxlab<span class="brand-dot">.</span></span></a>
+  <span class="brand-divider"></span><span class="product-label">FLUID DYNAMICS</span>
+  <button class="project-title" id="project-title" data-action="rename" title="Rename case">Airfoil water tunnel <span>⌄</span></button>
+  <div class="title-right"><span class="local-badge"><i></i> Local session</span><button class="icon-button" data-action="undo" title="Undo (Ctrl+Z)" aria-label="Undo" data-icon="undo"></button><button class="icon-button" data-action="redo" title="Redo (Ctrl+Shift+Z)" aria-label="Redo" data-icon="redo"></button><button class="icon-button" data-action="help" title="Documentation and shortcuts" aria-label="Help" data-icon="help"></button><span class="avatar">FL</span></div>
+</header>
+<nav class="ribbon-tabs" aria-label="Main workflow">
+  <button data-action="files" class="file-tab">File</button><button data-tab="home" class="active">Home</button><button data-tab="geometry">Geometry</button><button data-tab="mesh">Mesh</button><button data-tab="setup">Setup</button><button data-tab="solution">Solution</button><button data-tab="results">Results</button><button data-tab="view">View</button>
+  <span class="ribbon-spacer"></span><button data-action="gallery" class="examples-link"><span data-icon="layers"></span> Example cases</button><button data-action="theme" class="theme-toggle" title="Toggle application theme" aria-label="Toggle theme" data-icon="sun"></button>
+</nav>
+<section class="ribbon" id="ribbon" aria-label="Workflow tools"></section>
+<main class="workspace">
+  <aside class="outline-pane">
+    <div class="pane-heading"><span>Outline</span><div><button class="icon-button" data-action="expand-tree" title="Expand all" data-icon="expand"></button><button class="icon-button" data-action="gallery" title="Open case library" data-icon="folder"></button></div></div>
+    <div class="tree-search"><span data-icon="search"></span><input id="tree-search" aria-label="Filter outline" placeholder="Filter outline…"><kbd>⌘ K</kbd></div>
+    <div class="tree" id="tree"></div>
+    <div class="outline-summary"><div class="eyebrow">COMPUTE ENVIRONMENT</div><div class="engine-line"><span class="engine-orb"></span><strong id="engine-name">Initializing…</strong><span class="mini-badge" id="engine-badge">LOCAL</span></div><p id="engine-detail">Your geometry and results stay on this device.</p><div class="summary-metrics"><span>Dimensions <b>2D</b></span><span>Precision <b>Float32</b></span></div><a href="./docs/NUMERICS.md" target="_blank" rel="noopener">Numerical method <span>↗</span></a></div>
+  </aside>
+  <section class="center-pane">
+    <div class="graphics-tabs"><button class="active" data-action="graphics"><span data-icon="cube"></span> Graphics 1 <span class="tab-state"></span></button><span class="graphics-case" id="graphics-case">airfoil-water-tunnel</span><div class="graphics-tabs-right"><span id="dimension-badge">2D · Double distribution buffers</span><button class="icon-button" data-action="fullscreen" title="Fullscreen viewport" aria-label="Fullscreen viewport" data-icon="maximize"></button></div></div>
+    <div class="viewport" id="viewport">
+      <canvas id="field-canvas" aria-label="Simulated flow field"></canvas><canvas id="overlay-canvas" aria-label="Interactive geometry and flow overlay"></canvas>
+      <div class="viewport-top"><div class="field-control"><span class="field-dot"></span><select id="field-select" aria-label="Contour field"><option value="speed">Velocity magnitude</option><option value="pressure">Gauge pressure</option><option value="vorticity">Vorticity · Z</option><option value="ux">X velocity</option><option value="uy">Y velocity</option></select><span class="field-unit" id="field-unit">m/s</span></div><div class="viewport-actions"><button class="glass-button active" data-toggle="streamlines" title="Streamlines" aria-label="Streamlines" data-icon="flow"></button><button class="glass-button" data-toggle="vectors" title="Velocity vectors" aria-label="Velocity vectors" data-icon="arrow"></button><button class="glass-button" data-toggle="mesh" title="Mesh overlay (M)" aria-label="Mesh overlay" data-icon="grid"></button><span></span><button class="glass-button" data-action="fit" title="Fit domain (F)" aria-label="Fit domain" data-icon="fit"></button><button class="glass-button" data-action="screenshot" title="Export image" aria-label="Export image" data-icon="camera"></button></div></div>
+      <div class="scene-info"><div class="eyebrow">SOLUTION / <span id="scene-field">VELOCITY MAGNITUDE</span></div><h1 id="scene-title">Flow, made visible.</h1><p id="scene-subtitle">NACA 0012 · Low-Reynolds-number water tunnel</p></div>
+      <div class="viewport-toolbox"><button class="glass-button active" data-tool="select" title="Select and move (V)" aria-label="Select and move" data-icon="cursor"></button><button class="glass-button" data-tool="pan" title="Pan (H)" aria-label="Pan" data-icon="hand"></button><div></div><button class="glass-button" data-tool="circle" title="Draw cylinder (C)" aria-label="Draw cylinder" data-icon="circle"></button><button class="glass-button" data-tool="box" title="Draw rectangle (R)" aria-label="Draw rectangle" data-icon="box"></button><button class="glass-button" data-tool="polygon" title="Draw polygon; Enter to finish" aria-label="Draw polygon" data-icon="polygon"></button><button class="glass-button" data-tool="probe" title="Place probe (P)" aria-label="Place probe" data-icon="probe"></button></div>
+      <div class="legend"><strong id="legend-title">Velocity</strong><small id="legend-unit">m/s</small><div class="legend-body"><div id="legend-gradient"></div><div class="legend-labels" id="legend-labels"></div></div></div>
+      <div class="viewport-bottom"><div class="scene-status"><span id="run-dot"></span><span id="scene-status">Initializing field</span><span class="separator">/</span><span id="iteration-label">0 iterations</span></div><div class="view-coordinates"><span id="coordinates">x 0.000 · y 0.000 m</span><button data-action="fit" id="zoom-label">100%</button></div></div>
+      <div class="loading-overlay" id="loading"><span class="spinner"></span><strong>Preparing your flow workspace</strong><small>Compiling kernels and initializing the lattice…</small></div>
+      <div class="probe-tooltip" id="probe-tooltip" hidden></div>
+      <div class="edit-hint" id="edit-hint" hidden></div>
+    </div>
+    <section class="bottom-panel">
+      <div class="bottom-tabs"><button data-bottom="convergence" class="active"><span data-icon="chart"></span> Monitors</button><button data-bottom="console"><span data-icon="terminal"></span> Console <span id="log-count" class="count-badge">0</span></button><button data-bottom="probes"><span data-icon="probe"></span> Probe data</button><button data-bottom="report"><span data-icon="file"></span> Summary</button><div class="bottom-spacer"></div><button class="icon-button" data-action="export-monitor" title="Export monitor history" data-icon="download"></button><button class="icon-button" data-action="toggle-bottom" title="Collapse monitor panel" data-icon="chevron"></button></div>
+      <div id="bottom-content" class="bottom-content"><div class="monitor-chart"><div class="chart-caption"><span>Temporal residuals <span class="subtle">· normalized change / iteration</span></span><div class="chart-key"><span><i class="line-orange"></i>density</span><span><i class="line-blue"></i>x-velocity</span><span><i class="line-green"></i>y-velocity</span></div></div><canvas id="chart-canvas"></canvas></div><div class="monitor-numbers"><div><span>Iteration</span><strong id="metric-iteration">0</strong><small id="metric-target">of 20,000</small></div><div><span>Physical time</span><strong id="metric-time">0.00 <small>s</small></strong></div><div><span>Max. velocity</span><strong id="metric-speed">— <small>m/s</small></strong></div><div class="monitor-state" id="monitor-health"><i></i> Initializing</div></div></div>
+    </section>
+  </section>
+  <aside class="inspector-pane"><div class="pane-heading"><span id="inspector-heading">Solution setup</span><button class="icon-button" data-action="help" title="Help" data-icon="help"></button></div><div id="inspector" class="inspector"></div><div class="inspector-footer"><div><span id="footer-state-dot"></span><span id="footer-state">Ready to calculate</span></div><button class="run-main" id="run-main" data-action="run"><span data-icon="play"></span><span>Calculate</span><kbd>Space</kbd></button></div></aside>
+</main>
+<footer class="statusbar"><span class="status-left"><i></i><span id="status-message">Ready</span></span><span id="status-cells">— cells</span><span id="status-re">Re —</span><span id="status-tau">τ —</span><span class="status-right"><span id="status-fps">— fps</span><span id="status-mlups">— MLUPS</span><span id="status-backend">WebGPU</span></span></footer>
+<dialog id="modal"><div id="modal-content"></div></dialog><div class="toast-region" id="toasts" aria-live="polite"></div><input type="file" id="case-file" accept=".json,.fluxlab" hidden><input type="file" id="geometry-file" accept=".svg,.json" hidden>
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>

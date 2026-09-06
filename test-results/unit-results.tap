@@ -1,0 +1,91 @@
+TAP version 13
+# trt shear decay: measured=5.71902578e-3, analytical=5.72306746e-3, relative error=0.0706%
+# bgk shear decay: measured=5.71246015e-3, analytical=5.72306746e-3, relative error=0.1853%
+# Cavity mean density: 1.000126652, min ux: -0.0005625131201337685, max ux: 0.0022928091612729163
+# Subtest: All six supplied cases satisfy strict schema and lattice stability constraints
+ok 1 - All six supplied cases satisfy strict schema and lattice stability constraints
+  ---
+  duration_ms: 52.513008
+  type: 'test'
+  ...
+# Subtest: Equilibrium exactly reproduces prescribed density and momentum
+ok 2 - Equilibrium exactly reproduces prescribed density and momentum
+  ---
+  duration_ms: 0.542364
+  type: 'test'
+  ...
+# Subtest: TRT: periodic uniform equilibrium is stationary
+ok 3 - TRT: periodic uniform equilibrium is stationary
+  ---
+  duration_ms: 200.423259
+  type: 'test'
+  ...
+# Subtest: BGK: periodic uniform equilibrium is stationary
+ok 4 - BGK: periodic uniform equilibrium is stationary
+  ---
+  duration_ms: 95.678457
+  type: 'test'
+  ...
+# Subtest: TRT: shear-wave decay recovers analytical viscosity
+ok 5 - TRT: shear-wave decay recovers analytical viscosity
+  ---
+  duration_ms: 460.616218
+  type: 'test'
+  ...
+# Subtest: BGK: shear-wave decay recovers analytical viscosity
+ok 6 - BGK: shear-wave decay recovers analytical viscosity
+  ---
+  duration_ms: 386.149036
+  type: 'test'
+  ...
+# Subtest: Closed lid-driven cavity conserves mass and produces recirculation
+ok 7 - Closed lid-driven cavity conserves mass and produces recirculation
+  ---
+  duration_ms: 667.532602
+  type: 'test'
+  ...
+# Subtest: Zou–He tunnel boundaries recover prescribed inlet velocity and outlet density
+ok 8 - Zou–He tunnel boundaries recover prescribed inlet velocity and outlet density
+  ---
+  duration_ms: 959.548197
+  type: 'test'
+  ...
+# Subtest: Rasterization distinguishes body interior from fluid and fixed domain walls
+ok 9 - Rasterization distinguishes body interior from fluid and fixed domain walls
+  ---
+  duration_ms: 2.331489
+  type: 'test'
+  ...
+# Subtest: Case validation rejects nonphysical, oversized and malformed input
+ok 10 - Case validation rejects nonphysical, oversized and malformed input
+  ---
+  duration_ms: 1.920376
+  type: 'test'
+  ...
+# Subtest: History undo / redo creates independent snapshots
+ok 11 - History undo / redo creates independent snapshots
+  ---
+  duration_ms: 0.582467
+  type: 'test'
+  ...
+# Subtest: CSV and VTK serialize physical velocity and gauge pressure
+ok 12 - CSV and VTK serialize physical velocity and gauge pressure
+  ---
+  duration_ms: 1.256918
+  type: 'test'
+  ...
+# Subtest: Worker message protocol, transferable field, and reference solver agree exactly
+ok 13 - Worker message protocol, transferable field, and reference solver agree exactly
+  ---
+  duration_ms: 790.939144
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3092.426787

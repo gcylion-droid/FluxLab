@@ -1,0 +1,43 @@
+{
+  "format": "fluxlab-case",
+  "version": 1,
+  "name": "Lid-driven cavity",
+  "domain": {
+    "length": 0.04,
+    "height": 0.04,
+    "nx": 192
+  },
+  "fluid": {
+    "name": "Water · 20 °C",
+    "density": 998.2,
+    "viscosity": 0.001002
+  },
+  "flow": {
+    "speed": 0.0025,
+    "latticeSpeed": 0.055,
+    "mode": "cavity",
+    "walls": "noslip",
+    "profile": "uniform"
+  },
+  "solver": {
+    "collision": "trt",
+    "batch": 12,
+    "target": 20000,
+    "tolerance": 0.00001,
+    "autoStop": false
+  },
+  "bodies": [],
+  "display": {
+    "field": "speed",
+    "palette": "spectrum",
+    "streamlines": false,
+    "vectors": true,
+    "mesh": false,
+    "particles": true,
+    "contours": false,
+    "autoRange": true,
+    "rangeMin": 0,
+    "rangeMax": 0.01
+  },
+  "probes": []
+}
