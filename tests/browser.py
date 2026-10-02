@@ -16,7 +16,7 @@ async def main():
  server=None;checks=[];errors=[]
  def passed(name,details=None):checks.append({'check':name,'status':'passed','details':details});print('PASS',name,details or '',flush=True)
  if not args.memory:
-  env=os.environ.copy();env['PORT']='4173';server=subprocess.Popen(['node','server.mjs'],cwd=ROOT,env=env,stdout=subprocess.DEVNULL);time.sleep(.5)
+  env=os.environ.copy();env['PORT']='4174';server=subprocess.Popen(['node','server.mjs'],cwd=ROOT,env=env,stdout=subprocess.DEVNULL);time.sleep(.5)
  try:
   async with async_playwright() as pw:
    kwargs={'headless':True,'args':['--no-sandbox','--enable-unsafe-webgpu','--use-angle=swiftshader','--disable-dev-shm-usage']}
@@ -27,7 +27,7 @@ async def main():
    if args.memory:
     html,bundle=build.build();base=html[:html.rfind('<script>')]+html[html.rfind('</script>')+9:]
     await page.set_content(base,wait_until='domcontentloaded');await page.add_script_tag(content=bundle)
-   else:await page.goto('http://127.0.0.1:4173/?fresh&paused',wait_until='networkidle')
+   else:await page.goto('http://127.0.0.1:4174/?fresh&paused',wait_until='networkidle')
    await page.wait_for_function('window.fluxlab && !fluxlab.state.loading && fluxlab.state.engine',timeout=30000)
    await page.evaluate('async()=>{if(fluxlab.state.running)await fluxlab.action("run");}')
    await page.wait_for_function('!fluxlab.state.busy')

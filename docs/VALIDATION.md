@@ -56,7 +56,7 @@ python3 -m playwright install chromium
 npm run test:browser
 ```
 
-Default browser testing serves the actual modular app at localhost:4173. The suite requests WebGPU availability; when an adapter is obtained it attempts a 128-step cylinder GPU/CPU comparison, requiring maximum absolute difference below 1e-4 across the stored macroscopic field. Passing that check would be useful initial parity verification, not comprehensive GPU validation.
+Default browser testing serves the actual modular app at localhost:4174. The suite requests WebGPU availability; when an adapter is obtained it attempts a 128-step cylinder GPU/CPU comparison, requiring maximum absolute difference below 1e-4 across the stored macroscopic field. Passing that check would be useful initial parity verification, not comprehensive GPU validation.
 
 Use `CHROMIUM_PATH=/path/to/chromium` to choose a browser. Use `python3 tests/browser.py --memory` only for the in-memory standalone path. The recorded `not-executed` result must not be silently converted to a pass when distributing or quoting this report.
 

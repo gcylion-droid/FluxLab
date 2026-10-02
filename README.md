@@ -19,7 +19,7 @@ cd fluxlab
 npm start
 ```
 
-Open `http://localhost:4173` in a WebGPU-capable browser. WebGPU needs a secure context, normally HTTPS or a trustworthy localhost origin; availability also depends on the browser, GPU, drivers, and administrator policy. [WebGPU API documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API).
+Open `http://localhost:4174` in a WebGPU-capable browser. WebGPU needs a secure context, normally HTTPS or a trustworthy localhost origin; availability also depends on the browser, GPU, drivers, and administrator policy. [WebGPU API documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API).
 
 The compute-environment card identifies the actual selected backend:
 
@@ -112,7 +112,7 @@ python3 -m playwright install chromium
 npm run test:browser
 ```
 
-To use an existing Chromium binary, set `CHROMIUM_PATH`. The browser suite starts the server on port 4173; stop any existing server on that port first. `python3 tests/browser.py --memory` tests the standalone app without navigation in restricted environments. It does not change browser policies or replace numerical code with mocks.
+To use an existing Chromium binary, set `CHROMIUM_PATH`. The browser suite starts the server on port 4174; stop any existing server on that port first. `python3 tests/browser.py --memory` tests the standalone app without navigation in restricted environments. It does not change browser policies or replace numerical code with mocks.
 
 The recorded build passed **13 core/worker tests and 19 browser checks** with no uncaught JavaScript errors. The analytical periodic shear-wave amplitude errors were **0.0706% (TRT)** and **0.1853% (BGK)** for the documented test. These are narrow verification results, not general accuracy guarantees. Browser tests here exercised the real cooperative CPU solver. GPU execution and CPU/GPU parity were **not executed** because no adapter was exposed. The served browser suite attempts parity when an adapter is available. Full details and evidence are in [VALIDATION.md](docs/VALIDATION.md) and `test-results/`.
 
